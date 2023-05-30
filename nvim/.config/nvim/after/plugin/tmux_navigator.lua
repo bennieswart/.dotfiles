@@ -1,0 +1,11 @@
+-- vim.g.tmux_navigator_no_mappings = true
+-- 
+-- vim.keymap.set("n", "<C-l>", ":<C-U>TmuxNavigateLeft<cr>")
+-- vim.keymap.set("n", "<C-j>", ":<C-U>TmuxNavigateDown<cr>")
+-- vim.keymap.set("n", "<C-k>", ":<C-U>TmuxNavigateUp<cr>")
+-- vim.keymap.set("n", "<C-h>", ":<C-U>TmuxNavigateRight<cr>")
+
+-- noremap <silent> {Left-Mapping} :<C-U>TmuxNavigateLeft<cr>
+-- noremap <silent> {Down-Mapping} :<C-U>TmuxNavigateDown<cr>
+-- noremap <silent> {Up-Mapping} :<C-U>TmuxNavigateUp<cr>
+-- noremap <silent> {Right-Mapping} :<C-U>TmuxNavigateRight<

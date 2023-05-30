@@ -1,0 +1,72 @@
+if-shell 'tmux has -t goodxweb' {
+display-message -d 5000 'Session named goodxweb already exists'
+} {
+# Create goodxweb session and initialize layouts.
+attach-session -t . -c ~/quantsolutions/goodxweb
+rename-session goodxweb
+
+# The goodxweb code editor, build, backend, and terminal.
+new-window -c ~/quantsolutions/goodxweb
+rename-window goodxweb
+
+send-keys 'source .venv/bin/activate' Enter \
+          'cd src' Enter \
+          'vim ../todo.txt' Enter
+
+split-window -v -c "#{pane_current_path}"
+resize-pane -y 10
+send-keys 'source .venv/bin/activate' Enter \
+          'cd dist/server' Enter \
+          'python main.py -vr' Enter
+
+split-window -h -c "#{pane_current_path}"
+resize-pane -x 80
+send-keys 'source .venv/bin/activate' Enter \
+          'grunt watch --no-lint' Enter
+
+select-pane -t 0
+split-window -h -c "#{pane_current_path}"
+send-keys 'source .venv/bin/activate' Enter
+
+select-pane -t 0
+resize-pane -x 128
+
+# Terminals in db_schema repo.
+new-window -c ~/quantsolutions/db_schema
+rename-window db_schema
+
+split-window -h -c "#{pane_current_path}"
+
+split-window -v -c "#{pane_current_path}"
+resize-pane -y 20
+
+select-pane -t 1
+select-pane -t 0
+resize-pane -x 128
+ 
+# Terminal in workflow_events repo.
+new-window -c ~/quantsolutions/workflow_events
+rename-window workflow_events
+
+split-window -h -c "#{pane_current_path}"
+
+split-window -v -c "#{pane_current_path}"
+resize-pane -y 20
+
+select-pane -t 1
+select-pane -t 0
+resize-pane -x 128
+
+# Terminal for psql.
+new-window
+rename-window psql
+send-keys 'psql -h localhost -U postgres goodxweb' Enter
+split-window -h -c "#{pane_current_path}"
+send-keys 'psql -h localhost -U postgres goodxweb' Enter
+select-pane -t 0
+
+# Kill the first window and renumber windows.
+kill-window -t 1
+move-window -r
+select-window -t 1
+}
