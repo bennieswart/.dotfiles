@@ -1,0 +1,15 @@
+#
+# Everything related to launching apps.
+#
+
+set $mode_launch Launch...
+
+mode "$mode_launch" {
+    bindsym c exec chromium, mode "default"
+    bindsym f exec caja, mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+o mode "$mode_launch"

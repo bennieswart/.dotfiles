@@ -1,0 +1,8 @@
+#
+# Everything related to displays.
+#
+
+exec --no-startup-id $CONFIG/scripts/setup_displays.sh
+
+bindsym $mod+Control+greater move workspace to output right
+bindsym $mod+Control+less move workspace to output left

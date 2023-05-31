@@ -1,0 +1,25 @@
+#
+# Everything related to system lock/logout/suspend/hibernate/reboot/shutdown.
+#
+
+set $mode_system System (l)ock, log(o)ut, (s)uspend, (h)ibernate, (r)eboot, shut(d)own
+
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $CONFIG/scripts/lock.sh, mode "default"
+    bindsym o exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym d exec --no-startup-id systemctl poweroff, mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Delete mode "$mode_system"
+
+# Shortcut for easier locking.
+bindsym Control+$Alt+l exec --no-startup-id systemctl suspend
+
+# Hook into X to lock the screen on screensaver/suspend/hibernate etc.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- $CONFIG/scripts/lock.sh

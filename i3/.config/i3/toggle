@@ -1,0 +1,23 @@
+#
+# Everything related to toggles.
+#
+
+set $mode_toggle Toggle (t)ouchpad, (e)th0, (w)lan0, wla(n), (b)luetooth
+
+mode "$mode_toggle" {
+    # Toggle touchpad on/off.
+    bindsym t exec --no-startup-id $CONFIG/scripts/touchpad.sh toggle, mode "default"
+
+    # Toggle eth0/wlan0 link on/off.
+    bindsym e exec --no-startup-id $CONFIG/scripts/toggle_link.sh eth0, mode "default"
+    bindsym w exec --no-startup-id $CONFIG/scripts/toggle_link.sh wlan0, mode "default"
+
+    # Toggle wlan/bluetooth radio on/off.
+    bindsym n exec --no-startup-id rfkill toggle wlan, mode "default"
+    bindsym b exec --no-startup-id rfkill toggle bluetooth, mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym F9 mode "$mode_toggle"

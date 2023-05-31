@@ -2,11 +2,11 @@ if-shell 'tmux has -t goodxweb' {
 display-message -d 5000 'Session named goodxweb already exists'
 } {
 # Create goodxweb session and initialize layouts.
-attach-session -t . -c ~/quantsolutions/goodxweb
+attach-session -t . -c ~/goodx/goodxweb
 rename-session goodxweb
 
 # The goodxweb code editor, build, backend, and terminal.
-new-window -c ~/quantsolutions/goodxweb
+new-window -c ~/goodx/goodxweb
 rename-window goodxweb
 
 send-keys 'source .venv/bin/activate' Enter \
@@ -32,7 +32,7 @@ select-pane -t 0
 resize-pane -x 128
 
 # Terminals in db_schema repo.
-new-window -c ~/quantsolutions/db_schema
+new-window -c ~/goodx/db_schema
 rename-window db_schema
 
 split-window -h -c "#{pane_current_path}"
@@ -45,7 +45,7 @@ select-pane -t 0
 resize-pane -x 128
  
 # Terminal in workflow_events repo.
-new-window -c ~/quantsolutions/workflow_events
+new-window -c ~/goodx/workflow_events
 rename-window workflow_events
 
 split-window -h -c "#{pane_current_path}"
@@ -63,6 +63,14 @@ rename-window psql
 send-keys 'psql -h localhost -U postgres goodxweb' Enter
 split-window -h -c "#{pane_current_path}"
 send-keys 'psql -h localhost -U postgres goodxweb' Enter
+select-pane -t 0
+
+# Terminal for state.
+new-window -c ~/goodx/goodxweb
+rename-window state
+send-keys 'source .venv/bin/activate' Enter
+split-window -h -c "#{pane_current_path}"
+split-window -h -c "#{pane_current_path}"
 select-pane -t 0
 
 # Kill the first window and renumber windows.

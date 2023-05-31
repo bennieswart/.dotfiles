@@ -1,0 +1,13 @@
+#
+# Everything related to the mouse
+#
+
+# Don't automatically focus a window when the mouse moves over it.
+focus_follows_mouse no
+
+# Use Mouse+$mod to drag floating windows to their wanted position.
+floating_modifier $mod
+
+# Move tiling windows via drag & drop by left-clicking into the title bar,
+# or left-clicking anywhere into the window while holding the floating modifier.
+tiling_drag modifier titlebar

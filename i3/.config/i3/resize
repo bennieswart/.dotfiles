@@ -1,0 +1,21 @@
+#
+# Everything related to resizing windows.
+#
+
+set $mode_resize Resize (Shift x5): (h) -hor, (j) +ver, (k) -ver, (l) +hor
+mode "$mode_resize" {
+    bindsym h resize shrink width 10 px
+    bindsym j resize grow height 10 px
+    bindsym k resize shrink height 10 px
+    bindsym l resize grow width 10 px
+
+    bindsym Shift+h resize shrink width 50 px
+    bindsym Shift+j resize grow height 50 px
+    bindsym Shift+k resize shrink height 50 px
+    bindsym Shift+l resize grow width 50 px
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "$mode_resize"
